@@ -1,5 +1,5 @@
 ## cato-splunk-integration
-
+  
 This project gives the ability to easily run a Splunk environment integrating Cato events. The demo environment is based on a combination of official Docker images (Elastic, and Splunk).  
 
 ## Contents
