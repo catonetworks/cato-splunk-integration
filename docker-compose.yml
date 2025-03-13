@@ -1,0 +1,36 @@
+volumes:
+  opt-splunk-etc:
+  opt-splunk-var:
+  tmp-eventgenlogs:
+      
+networks:
+  splunk:
+    driver: bridge
+  
+services:
+  splunk:
+    hostname: splunk
+    build:
+      # context: splunk/splunkenterprise/
+      args:
+        SPLUNK_VERSION: $SPLUNK_VERSION
+    restart: on-failure
+    environment:
+      SPLUNK_START_ARGS: --accept-license
+      SPLUNK_PASSWORD: $PASSWORD
+      SPLUNK_STANDALONE_URL: splunk:9997
+      SPLUNK_DISABLE_POPUPS: 'True'
+      SPLUNK_HEC_TOKEN: $SPLUNK_HEC_TOKEN
+      CATO_TOKEN: $CATO_TOKEN
+      CATO_ACCOUNT_ID: $CATO_ACCOUNT_ID
+    volumes:
+      - opt-splunk-etc:/opt/splunk/etc
+      - opt-splunk-var:/opt/splunk/var
+      - tmp-eventgenlogs:/tmp/eventgenlogs
+    ports:
+      - "8000:8000" # 
+      - "9997:9997" # 
+      - "8088:8088" # 
+      - "1514:1514" # Listening port
+    networks:
+      - splunk 
