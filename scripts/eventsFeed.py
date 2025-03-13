@@ -362,9 +362,9 @@ while True:
     # network stream
     if args.stream_events is not None:
         logd(f"Sending events to {network_elements[0]}:{network_elements[1]}")
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.connect((network_elements[0], int(network_elements[1])))
-            for event in events_list:
+        for event in events_list:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.connect((network_elements[0], int(network_elements[1])))
                 s.sendall(json.dumps(event, ensure_ascii=False).encode("utf-8"))
 
 
