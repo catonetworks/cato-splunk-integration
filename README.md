@@ -5,8 +5,8 @@ This project gives the ability to easily run a Splunk environment integrating Ca
 ## Contents
 1. [Requirements](#requirements)
    * [Host setup](#host-setup)
-   * [SELinux](#selinux)
    * [Docker for Windows](#docker-for-windows)
+   * [Getting Started](#getting-started)
 
 ## Requirements
 
